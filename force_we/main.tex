@@ -1,0 +1,203 @@
+\documentclass[12pt]{book}
+\usepackage[hmargin=0.6in,vmargin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage[rightcaption]{sidecap}
+\usepackage{graphicx}
+\usepackage{placeins}
+\usepackage{enumerate}
+\usepackage{amssymb}
+\usepackage{wrapfig}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{tikz,lipsum,lmodern}
+\usepackage[most]{tcolorbox}
+
+\title{Using fancyhdr for Custom Page Header and Footers in a Two-sided Document}
+
+\usepackage{etoolbox}
+\makeatletter
+% no new page for \chapter
+\patchcmd{\chapter}{\if@openright\cleardoublepage\else\clearpage\fi}{}{}{}
+% don't change the pagestyle
+\patchcmd{\chapter}{\thispagestyle{plain}}{}{}{%
+    % example for a warning, 'Package' in text necessary to make TexStudio show it.
+    \GenericWarning{(preamble)\@spaces\@spaces\@spaces\@spaces}{Package preamble Warning: patching \string\chapter\space did not work.}}
+
+% allow floats on top of the page with a new chapter
+\patchcmd{\chapter}{\global\@topnum\z@}{}{}{}
+% if not commented out, first paragraph will be indented
+\patchcmd{\chapter}{\@afterindentfalse}{}{}{}
+%\makeatother
+
+\usepackage{titlesec}
+\titleformat{\chapter}{\normalfont\bfseries\Large}{\thechapter.\quad}{0pt}{}
+\titlespacing{\chapter}{0pt}{-5pt}{4pt}% left space, top space, bottom space
+
+
+
+\usepackage{fancyhdr}
+% Clear off all default fancyhdr headers and footers
+\fancyhf{}
+\pagestyle{fancy}
+
+\addtolength{\headheight}{\baselineskip}
+
+\fancyhead[L]{\leftmark}
+\renewcommand{\chaptermark}[1]{\markboth{\MakeUppercase{#1}}{}}
+%\fancyhead[L]{\textbf{\sectiontitle}}
+\fancyhead[R]{\sffamily\itshape Lecture Notes on Biophysics}
+% Custom text at the left edge of odd pages, and right edge of odd pages.
+%\fancyhead[LO,RE]{\sffamily\itshape Fun with fancyhdr}
+
+% Repeat for \fancyfoot if needed, e.g.
+% Some decorative symbol at the centre of both odd and even pages
+\fancyfoot[L]{\sffamily\itshape Linn Abraham , MGM College of Nursing}
+\fancyfoot[C]{\thepage}
+\fancyfoot[R]{ June 2020}
+% Set this length to 0pt if you don't want any lines!
+\renewcommand{\headrulewidth}{2pt}
+\pagenumbering{roman}
+% Apply the fancy header style
+
+
+\usepackage{lipsum}
+\begin{document}
+
+\title{Simple Machines}
+\setcounter{page}{1}
+\maketitle
+\chapter{Introduction}
+\subsection*{Newtons Laws of Motion}
+The first law talks about what happens to bodies in the absence of any forces. The second law talks about what happens to bodies in the presence of a force.
+It is this law that also serves to define what a force is quantitatively. The third law also talks about force.
+\subsubsection{First Law}
+Every body continues to be in its state of rest or of uniform motion in a straight line (uniform velocity) unless compelled by an external force.
+
+This tendency of bodies whereby they do not change their state of motion in the absence of a force is called as inertia.
+\subsubsection{Second Law}
+Mass may be defined as the measure
+of a bodies inertia. Thus greater the mass of a body, the greater is its inertia. Thus greater the force needed to change its state of motion or in otherwords
+to cause acceleration in a body. This is what is contained in the following equation.
+F = ma.
+
+Everybody has an acceleration when a force acts on it which is dependent upon the mass of the body.
+
+\subsubsection{Third Law}
+Every action has an equal and opposite reaction.
+
+
+\subsection*{Principles of Friction}
+\subsection*{Work}
+In physics, work is said to be done not by a person, but by a force.
+Work is done by a force when its point of application moves in the direction of force.
+
+
+When the point of application moves against the direction of force, work is said to be done against the force.
+
+Work done by a force is measured by the product of the force and the displacement of the point of application in the direction of the force.
+Mathematically this is represented by the dot product.
+
+W = F. d
+
+\subsection*{Energy}
+Energy is defined as the capacity to do work.
+
+There are different forms of energy.
+Potential Energy, Kinetic Energy, Heat, Light, Sound etc.
+Potential energy is stored energy whereas Kinetic energy is the energy of motion.
+A body might have potential energy stored in it due to its height, such as the energy
+of a brick which has been raised to a height or the water in a dam. There is also
+chemical energy stored in the food we eat. This chemical potential energy is converted into kinetic energy by our muscles and ultimately into heat energy, say when we rub our hands together. The energy in food can also be directly converted into heat and light by adding certain chemicals.
+
+\subsubsection{Conservation of Energy}
+When the total energy change in a physical process was observed it was seen that
+the total energy remains the same before and after a physical process.
+Energy can neither be created nor destroyed but can only be transformed from one form to another.
+
+\subsection*{Simple Machines}
+\begin{itemize}
+    \item A machine is something that helps you use you energy more effectively.
+    \item The different types of simple machines
+	\begin{itemize}
+	    \item Inclined plane
+	    \item Lever
+	    \item Wheel and axle
+	    \item Pulleys
+	    \item Wedge
+	\end{itemize}
+    \item The lever and the inclined plane are the two basic machines.  Other simple machines are mostly a modification of the lever and inclined plane.
+    \item In all cases we have the relation , $ W_{in} = W_{out}$
+    \item The force that you input is also called the effort (E). This force is applied to overcome a force that is called the load or resistance (R)
+    \item We can then write the above relation as  $$ E\times de = R \times dr$$, where de is the distance through which the effort acts and dr is the distance through which the load moves.
+    \item The mechanical advantage of the machine is defined as the ratio of the resistance to the effort.
+	$$ ME = \frac{R}{E}$$
+	which is also equal to $$ ME = \frac{de}{dr}$$
+    \item The mechanical advantage of a machine has to be greater than 1 in order for it to reduce our effort.
+\end{itemize}
+\subsection*{Inclined plane}
+\begin{itemize}
+    \item It allows you to trade increased distance for decreased effort or force.
+    \item Consider loading a heavy weight onto a truck by lifting it directly versus rolling it on an inclined plane. In the latter case the force acts over a longer distance so that the force required to push it is lesser. The force required changes depending on the steepness of the inclined plane.
+    \item Examples of inclined planes in daily life:
+\end{itemize}
+
+\subsection*{Lever}
+\begin{itemize}
+    \item It is another kind of simple machine which consits of a bar resting on a fulcrum. It has two arms the effort arm and the resistance arm which balances two forces, the effort and the resitance.
+
+    \item The principle of the lever was stated first by Archimedes. It states that, "The longer the arm of the lever to which force force is applied, the less that force need be."
+    \item Examples of levers in daily life:
+	\begin{itemize}
+	    \item Using a hammer to pull a nail out of a plank of wood.
+	    \item A can or soda opener.
+	\end{itemize}
+    \item Levers are of three different types. [ refer to text. ]
+\end{itemize}
+
+\subsection*{Mechanical advantage and friction}
+\begin{itemize}
+    \item The mechanical advantage of the inclined plane is in most cases less than that of the lever.
+    \item This is because friction is involved to a greater extent when two objects are pushed against each other. In order to overcome the force of friction more effort has to be supplied and this reduces the mechanical advantage offered by the machine.
+    \item With the lever however,  the area of contact is greatly reduced and hence the role of friction is reduced to a great extent.
+
+\end{itemize}
+\subsection*{Screw}
+\begin{itemize}
+\item A screw is a modified form of an inclined plane.
+\item It can be considered as an incline plane wrapped around a cylinder.
+\item Example of screws in daily life are:
+
+
+\end{itemize}
+
+\subsection*{Wedge}
+\begin{itemize}
+    \item A wedge is also a modified form of the inclined plane.
+    \item It consists of two inclined planes joined together.
+    \item Example of the use of wedge in daily life are:
+\end{itemize}
+\subsection*{Pulleys}
+\begin{itemize}
+    \item A pulley consits of a wheel with a grooved rim which can rotate freely around an axle.
+    \item The axle is supported by a framework called the block.
+    \item A string or rope passes around the wheel
+    \item The chief function of the pulley is to equalise the tension in the string on either side of the pulley.
+    \item Pulleys can be classified into two types. Fixed pulleys and movable pulleys.
+    \item Fixed pulleys are attached to a fixed support
+    \item Movable pulleys are attached to the resistance and moves along with the resistance.
+    \item Examples of pulleys in daily life are:
+\end{itemize}
+%\chapter{Levers in the human body}
+
+%\subsection*{Lever action of jaw}
+
+%\subsection*{Lever action of foot}
+%\subsection*{Lever action of forearm}
+\subsection{Uniform Circular Motion}
+\subsubsection{Centripetal Force}
+\subsubsection{Centrifugal Force}
+\chapter{Uses of simple machines in health care and medical practice}
+\chapter{Different types of levers in the Human body}
+\chapter{Traction}
+\subsection{Application of Principles in Nursing}
+\end{document}

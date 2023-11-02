@@ -1,0 +1,116 @@
+\documentclass[12pt]{book}
+\usepackage[hmargin=0.6in,vmargin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage[rightcaption]{sidecap}
+\usepackage{graphicx}
+\usepackage{placeins}
+\usepackage{enumerate}
+\usepackage{amssymb}
+\usepackage{wrapfig}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{tikz,lipsum,lmodern}
+\usepackage[most]{tcolorbox}
+
+\title{Using fancyhdr for Custom Page Header and Footers in a Two-sided Document}
+
+\usepackage{etoolbox}
+\makeatletter
+% no new page for \chapter
+\patchcmd{\chapter}{\if@openright\cleardoublepage\else\clearpage\fi}{}{}{}
+% don't change the pagestyle
+\patchcmd{\chapter}{\thispagestyle{plain}}{}{}{%
+    % example for a warning, 'Package' in text necessary to make TexStudio show it.
+    \GenericWarning{(preamble)\@spaces\@spaces\@spaces\@spaces}{Package preamble Warning: patching \string\chapter\space did not work.}}
+
+% allow floats on top of the page with a new chapter
+\patchcmd{\chapter}{\global\@topnum\z@}{}{}{}
+% if not commented out, first paragraph will be indented
+\patchcmd{\chapter}{\@afterindentfalse}{}{}{}
+%\makeatother
+
+\usepackage{titlesec}
+\titleformat{\chapter}{\normalfont\bfseries\Large}{\thechapter.\quad}{0pt}{}
+\titlespacing{\chapter}{0pt}{-5pt}{4pt}% left space, top space, bottom space
+
+
+
+\usepackage{fancyhdr}
+% Clear off all default fancyhdr headers and footers
+\fancyhf{}
+\pagestyle{fancy}
+
+\addtolength{\headheight}{\baselineskip}
+
+\fancyhead[L]{\leftmark}
+\renewcommand{\chaptermark}[1]{\markboth{\MakeUppercase{#1}}{}}
+%\fancyhead[L]{\textbf{\sectiontitle}}
+\fancyhead[R]{\sffamily\itshape Lecture Notes on Biophysics}
+% Custom text at the left edge of odd pages, and right edge of odd pages.
+%\fancyhead[LO,RE]{\sffamily\itshape Fun with fancyhdr}
+
+% Repeat for \fancyfoot if needed, e.g.
+% Some decorative symbol at the centre of both odd and even pages
+\fancyfoot[L]{\sffamily\itshape Linn Abraham , MGM College of Nursing}
+\fancyfoot[C]{\thepage}
+
+\fancyfoot[R]{ June 2020}
+% Set this length to 0pt if you don't want any lines!
+\renewcommand{\headrulewidth}{2pt}
+\pagenumbering{roman}
+% Apply the fancy header style
+
+
+\usepackage{lipsum}
+\begin{document}
+
+\title{Heat}
+\setcounter{page}{1}
+\maketitle
+\chapter{Introduction}
+
+
+\section{Heat}
+
+\subsection*{Nature of Heat}
+\begin{enumerate}
+    \item Heat is a form of energy.
+    \item Heat is energy in transit. 
+    \item It is initimately connected with motion. It is the \textbf{total} kinetic energy 
+    of the molecules/atoms making up a system. 
+    \item Heat always flows from one body to another. The direction is decided by the temperature
+    of the two bodies. 
+\end{enumerate}
+\section{Temperature}
+\begin{enumerate}
+\item Temperature is a quantitative measure of the heat/thermal energy of a system. 
+\item It characterisez the thermal state of a body and determines whether energy will flow 
+from or toward it from another body in thermal contact {ref: conduction}.
+
+\end{enumerate}
+
+\subsection{Differences between Heat and Temperature}
+ 
+\section{Effects of Heat on matter}
+Expansion and contraction
+Phase change
+Combustion
+
+
+\section{Specific heat}
+
+\section{Methods of transfer of heat}
+\section{Measurement of Heat and Temperature}
+\subsection{Clinical thermometer}
+\subsection{Temperature scales}
+\section{Relative humidity}
+Humidity affects how hot we feel. 
+\section{Regulation of body temperature}
+Effect of vaporization.
+Circulation.
+
+\section{Use of heat for sterilization}
+\section{Application in nursing}
+
+
+\end{document}
